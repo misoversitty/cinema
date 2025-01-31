@@ -11,7 +11,9 @@ customers_schema = CustomerSchema(many=True)
 class FilmSchema(Schema):
     film_id = fields.Int()
     name = fields.String()
-    sessions = fields.List(fields.Nested("FilmSessionSchema"))
+    #sessions = fields.List(fields.Nested("FilmSessionSchema"))
+film_schema = FilmSchema()
+films_schema = FilmSchema(many=True)
 
 
 class OrderSchema(Schema):
