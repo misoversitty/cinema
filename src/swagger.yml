@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: "Cinema-app"
+  description: "cinema-app for course-work"
+  version: 0.0.1
+servers:
+  - url: "/api"
+paths:
+  /films:
+    get:
+      operationId: "controllers.FilmsController.read_all"
+      tags:
+        - "films"
+      summary: "Read the list of films"
+      responses:
+        "200":
+          description: "Success"
