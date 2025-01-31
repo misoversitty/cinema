@@ -15,3 +15,21 @@ paths:
       responses:
         "200":
           description: "Success"
+  /filmsessions:
+    get:
+      operationId: "controllers.FilmSessionsController.read_all"
+      tags:
+        - "filmSessions"
+      summary: "Read the list of sessions"
+      responses:
+        "200":
+          description: "Success"
+  /orders:
+    get:
+      operationId: "controllers.OrdersController.read_all"
+      tags:
+        - "orders"
+      summary: "Read the list of orders"
+      responses:
+        "200":
+          description: "Success"

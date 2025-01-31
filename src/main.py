@@ -1,9 +1,11 @@
 from connexion import FlaskApp
+from connexion.resolver import MethodResolver
 
 from config import *
 
 
 connexion_app = FlaskApp(__name__, specification_dir="./")
+connexion_app.add_api("swagger.yml", resolver=MethodResolver('controllers'))
 app = connexion_app.app
 
 
