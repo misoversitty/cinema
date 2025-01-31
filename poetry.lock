@@ -963,6 +963,20 @@ anyio = ">=3.6.2,<5"
 full = ["httpx (>=0.27.0,<0.29.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.18)", "pyyaml"]
 
 [[package]]
+name = "swagger-ui-bundle"
+version = "1.1.0"
+description = "Swagger UI bundled for usage with Python"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "swagger_ui_bundle-1.1.0-py3-none-any.whl", hash = "sha256:f7526f7bb99923e10594c54247265839bec97e96b0438561ac86faf40d40dd57"},
+    {file = "swagger_ui_bundle-1.1.0.tar.gz", hash = "sha256:20673c3431c8733d5d1615ecf79d9acf30cff75202acaf21a7d9c7f489714529"},
+]
+
+[package.dependencies]
+Jinja2 = ">=3.0.0,<4.0.0"
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -1028,4 +1042,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">3.11,<4.0"
-content-hash = "1a01672f71a604fc04b8d385facddbbce477259b16b78fdcad23e404a6663b18"
+content-hash = "19630a47422d297731f162894539b24f02abd87c18e8a52579fb687f4aa33360"
