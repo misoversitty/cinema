@@ -33,3 +33,12 @@ paths:
       responses:
         "200":
           description: "Success"
+  /customers:
+    get:
+      operationId: "controllers.CustomersController.read_all"
+      tags:
+        - "customers"
+      summary: "Read the list of customers"
+      responses:
+        "200":
+          description: "Success"

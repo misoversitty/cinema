@@ -31,3 +31,12 @@ class OrdersController:
             stmt = select(Order)
             orders = session.execute(stmt).scalars()
             return orders_schema.dump(orders)
+
+
+class CustomersController:
+    @staticmethod
+    def read_all():
+        with Session(engine) as session:
+            stmt = select(Customer)
+            customers = session.execute(stmt).scalars()
+            return customers_schema.dump(customers)
