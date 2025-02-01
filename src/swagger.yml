@@ -5,6 +5,15 @@ info:
   version: 0.0.1
 servers:
   - url: "/api"
+components:
+  parameters:
+    customer_id:
+      name: "customer_id"
+      description: "Customer id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
 paths:
   /films:
     get:
@@ -39,6 +48,17 @@ paths:
       tags:
         - "customers"
       summary: "Read the list of customers"
+      responses:
+        "200":
+          description: "Success"
+  /customers/{customer_id}:
+    get:
+      operationId: "controllers.CustomersController.read_one"
+      tags:
+        - "customers"
+      summary: "Read one customer"
+      parameters:
+        - $ref: "#components/parameters/customer_id"
       responses:
         "200":
           description: "Success"

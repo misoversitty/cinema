@@ -40,3 +40,10 @@ class CustomersController:
             stmt = select(Customer)
             customers = session.execute(stmt).scalars()
             return customers_schema.dump(customers)
+
+    @staticmethod
+    def read_one(customer_id: int):
+        with Session(engine) as session:
+            stmt = select(Customer).where(Customer.customer_id == customer_id)
+            customer = session.execute(stmt).scalar()
+            return customer_schema.dump(customer)
