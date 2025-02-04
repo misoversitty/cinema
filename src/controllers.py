@@ -32,6 +32,13 @@ class OrdersController:
             orders = session.execute(stmt).scalars()
             return orders_schema.dump(orders)
 
+    @staticmethod
+    def read_one(order_id: int):
+        with Session(engine) as session:
+            stmt = select(Order).where(Order.order_id == order_id)
+            order = session.execute(stmt).scalar()
+            return order_schema.dump(order)
+
 
 class CustomersController:
     @staticmethod

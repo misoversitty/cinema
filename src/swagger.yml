@@ -20,6 +20,13 @@ components:
         middle_name: 
           type: "string"
   parameters:
+    order_id:
+      name: "order_id"
+      description: "Order id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
     customer_id:
       name: "customer_id"
       description: "Customer id"
@@ -52,6 +59,17 @@ paths:
       tags:
         - "orders"
       summary: "Read the list of orders"
+      responses:
+        "200":
+          description: "Success"
+  /orders/{order_id}:
+    get:
+      operationId: "controllers.OrdersController.read_one"
+      tags:
+        - "orders"
+      summary: "Read one order"
+      parameters:
+        - $ref: "#components/parameters/order_id"
       responses:
         "200":
           description: "Success"
