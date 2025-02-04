@@ -47,3 +47,16 @@ class CustomersController:
             stmt = select(Customer).where(Customer.customer_id == customer_id)
             customer = session.execute(stmt).scalar()
             return customer_schema.dump(customer)
+
+    @staticmethod
+    def create(*args, **kwargs):
+        customer = kwargs.get("body")
+        data = customer_schema.load(customer)
+        first_name = data.get("first_name")
+        last_name = data.get("last_name")
+        middle_name = data.get("middle_name")
+        with Session(engine) as session:
+            new_customer = Customer(first_name=first_name, last_name=last_name, middle_name=middle_name)
+            session.add(new_customer)
+            session.commit()
+        return "", 201

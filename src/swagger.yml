@@ -64,6 +64,22 @@ paths:
       responses:
         "200":
           description: "Success"
+    post:
+      operationId: "controllers.CustomersController.create"
+      tags:
+        - "customers"
+      summary: "Create a customer"
+      requestBody:
+        description: "Customer to create"
+        required: True
+        content:
+          application/json:
+            schema:
+              x-body-name: "customer"
+              $ref: "#/components/schemas/customer"
+      responses:
+        "201":
+          description: "Successfully created customer"
   /customers/{customer_id}:
     get:
       operationId: "controllers.CustomersController.read_one"
