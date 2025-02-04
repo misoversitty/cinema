@@ -3,6 +3,9 @@ from marshmallow import Schema, fields
 
 class CustomerSchema(Schema):
     customer_id = fields.Int()
+    first_name = fields.String()
+    last_name = fields.String()
+    middle_name = fields.String()
     orders = fields.List(fields.Nested("OrderSchema"))
 customer_schema = CustomerSchema()
 customers_schema = CustomerSchema(many=True)

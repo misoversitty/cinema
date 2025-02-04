@@ -17,6 +17,10 @@ class Base(DeclarativeBase):
 class Customer(Base):
     __tablename__ = "customers"
     customer_id: Mapped[int] = mapped_column(primary_key=True)
+    first_name: Mapped[str] = mapped_column(String)
+    last_name: Mapped[str] = mapped_column(String)
+    middle_name: Mapped[str] = mapped_column(String)
+
     orders: Mapped[List["Order"]] = relationship(back_populates="customer")
 
 
