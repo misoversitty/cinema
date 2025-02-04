@@ -6,6 +6,19 @@ info:
 servers:
   - url: "/api"
 components:
+  schemas:
+    customer:
+      type: "object"
+      required:
+        - first_name
+        - last_name
+      properties:
+        first_name:
+          type: "string"
+        last_name: 
+          type: "string"
+        middle_name: 
+          type: "string"
   parameters:
     customer_id:
       name: "customer_id"
