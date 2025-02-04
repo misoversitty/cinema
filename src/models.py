@@ -35,8 +35,8 @@ orders_sessions_link = Table(
     "orders_list",
     Base.metadata,
     Column("order_id", ForeignKey("orders.order_id"), primary_key=True),
-    Column("session_id", ForeignKey("sessions.session_id"), primary_key=True)
-)
+    Column("session_id", ForeignKey("sessions.session_id"), primary_key=True))
+
 
 class Order(Base):
     __tablename__ = "orders"

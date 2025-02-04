@@ -56,7 +56,10 @@ class CustomersController:
         last_name = data.get("last_name")
         middle_name = data.get("middle_name")
         with Session(engine) as session:
-            new_customer = Customer(first_name=first_name, last_name=last_name, middle_name=middle_name)
+            new_customer = Customer(
+                first_name=first_name,
+                last_name=last_name,
+                middle_name=middle_name)
             session.add(new_customer)
             session.commit()
         return "", 201
