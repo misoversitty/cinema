@@ -18,4 +18,5 @@ with open(SECRETS_PATH / "secrets", 'r') as file_buffer:
     __db_uri = s.get("DB_URI")
 
 engine = create_engine(f"postgresql+psycopg2://{__db_username}:{__db_password}@{__db_uri}/{__db_name}",
-                       connect_args={'options': '-csearch_path={}'.format(__db_schema)})
+                       connect_args={'options': '-csearch_path={}'.format(__db_schema)},
+                       client_encoding='utf8')
