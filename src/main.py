@@ -16,7 +16,7 @@ def main():
 
 @app.route("/")
 def index():
-    return "", 200
+    return render_template("index.html")
 
 
 @app.route("/customers")
