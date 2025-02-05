@@ -21,7 +21,7 @@ films_schema = FilmSchema(many=True)
 
 class OrderSchema(Schema):
     order_id = fields.Int()
-    sessions = fields.List(fields.Nested("FilmSessionSchema", exclude=["orders"]))
+    sessions = fields.List(fields.Nested("OrderSessionAssociationSchema", exclude=["order"]))
 order_schema = OrderSchema()
 orders_schema = OrderSchema(many=True)
 
@@ -29,7 +29,13 @@ orders_schema = OrderSchema(many=True)
 class FilmSessionSchema(Schema):
     session_id = fields.Int()
     film = fields.Nested("FilmSchema", exclude=["sessions"])
-    orders = fields.List(fields.Nested("OrderSchema", exclude=["sessions"]))
+    orders = fields.List(fields.Nested("OrderSessionAssociationSchema", exclude=["session"]))
     include_relationships = True
 filmSession_schema = FilmSessionSchema()
 filmSessions_schema = FilmSessionSchema(many=True)
+
+
+class OrderSessionAssociationSchema(Schema):
+    order = fields.Nested("OrderSchema", exclude=["sessions"])
+    session = fields.Nested("FilmSessionSchema", exclude=["orders"])
+    count = fields.Integer()
