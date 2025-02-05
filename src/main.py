@@ -46,5 +46,11 @@ def show_filmsessions():
     return render_template("filmsessions.html", sessions=sessions)
 
 
+@app.route("/films")
+def show_films():
+    films = requests.get("http://localhost:8000/api/films").json()
+    return render_template("films.html", films=films)
+
+
 if __name__ == "__main__":
     main()

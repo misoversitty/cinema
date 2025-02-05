@@ -1,0 +1,30 @@
+<!-- templates/films.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cinema-app</title>
+</head>
+<body>
+	<h1>
+	    Films
+	</h1>
+	<table id="films">
+		<thead>
+			<tr>
+    			<th>id</th>
+                <th>name</th>
+  			</tr>
+		</thead>
+		<tbody>
+		{% for film in films %}
+		<tr>
+			<td><a href="/films/{{ film.film_id }}">{{ film.film_id }}</a></td>
+            <td><a href="/films/{{ film.film_id }}">{{ film.name }}</a></td>
+		</tr>
+    	{% endfor %}
+		</tbody>
+    </table>
+</body>
+</html>
