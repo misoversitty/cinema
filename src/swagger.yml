@@ -20,6 +20,20 @@ components:
         middle_name: 
           type: "string"
   parameters:
+    film_id:
+      name: "film_id"
+      description: "Film id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
+    filmsession_id:
+      name: "filmsession_id"
+      description: "Filmsession id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
     order_id:
       name: "order_id"
       description: "Order id"
@@ -44,12 +58,34 @@ paths:
       responses:
         "200":
           description: "Success"
+  /films/{film_id}:
+    get:
+      operationId: "controllers.FilmsController.read_one"
+      tags:
+        - "films"
+      summary: "Read one film"
+      parameters:
+        - $ref: "#components/parameters/film_id"
+      responses:
+        "200":
+          description: "Success"
   /filmsessions:
     get:
       operationId: "controllers.FilmSessionsController.read_all"
       tags:
         - "filmSessions"
       summary: "Read the list of sessions"
+      responses:
+        "200":
+          description: "Success"
+  /filmsessions/{filmsession_id}:
+    get:
+      operationId: "controllers.FilmSessionsController.read_one"
+      tags:
+        - "filmSessions"
+      summary: "Read one session"
+      parameters:
+        - $ref: "#components/parameters/filmsession_id"
       responses:
         "200":
           description: "Success"

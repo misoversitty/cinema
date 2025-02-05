@@ -14,6 +14,13 @@ class FilmsController:
             films = session.execute(stmt).scalars()
             return films_schema.dump(films)
 
+    @staticmethod
+    def read_one(film_id: int):
+        with Session(engine) as session:
+            stmt = select(Film).where(Film.film_id == film_id)
+            film = session.execute(stmt).scalar()
+            return film_schema.dump(film)
+
 
 class FilmSessionsController:
     @staticmethod
@@ -22,6 +29,13 @@ class FilmSessionsController:
             stmt = select(FilmSession)
             filmSessions = session.execute(stmt).scalars()
             return filmSessions_schema.dump(filmSessions)
+
+    @staticmethod
+    def read_one(filmsession_id: int):
+        with Session(engine) as session:
+            stmt = select(FilmSession).where(FilmSession.session_id == filmsession_id)
+            filmsession = session.execute(stmt).scalar()
+            return filmSession_schema.dump(filmsession)
 
 
 class OrdersController:
