@@ -40,5 +40,11 @@ def show_orders():
     return render_template("orders.html", orders=orders)
 
 
+@app.route("/filmsessions")
+def show_filmsessions():
+    sessions = requests.get("http://localhost:8000/api/filmsessions").json()
+    return render_template("filmsessions.html", sessions=sessions)
+
+
 if __name__ == "__main__":
     main()

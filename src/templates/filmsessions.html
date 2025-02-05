@@ -1,0 +1,28 @@
+<!-- templates/filmsessions.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cinema-app</title>
+</head>
+<body>
+	<h1>
+	    Sessions
+	</h1>
+	<table id="sessions">
+		<thead>
+			<tr>
+    			<th>id</th>
+  			</tr>
+		</thead>
+		<tbody>
+		{% for session in sessions %}
+		<tr>
+			<td><a href="/filmsessions/{{ session.session_id }}">{{ session.session_id }}</a></td>
+		</tr>
+    	{% endfor %}
+		</tbody>
+    </table>
+</body>
+</html>
