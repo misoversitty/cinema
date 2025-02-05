@@ -16,6 +16,7 @@
 				<th>No</th>
 				<th>name</th>
 				<th>count</th>
+				<th>date</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,6 +25,7 @@
 			<td>{{ loop.index }}</td>
 			<td>{{ session.session.film.name }}</td>
 			<td>{{ session.count }}</td>
+			<td>{{ session.session.date }}</td>
 		</tr>
     	{% endfor %}
 		</tbody>
