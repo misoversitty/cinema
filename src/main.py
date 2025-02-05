@@ -40,6 +40,15 @@ def show_orders():
     return render_template("orders.html", orders=orders)
 
 
+@app.route("/orders/<int:id>")
+def show_order(id):
+    if request.method == "GET":
+        order = requests.get(f"http://localhost:8000/api/orders/{id}").json()
+        return render_template("order.html", order=order)
+    elif request.method == "POST":
+        pass
+
+
 @app.route("/filmsessions")
 def show_filmsessions():
     sessions = requests.get("http://localhost:8000/api/filmsessions").json()

@@ -1,0 +1,32 @@
+<!-- templates/customer.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Editing data</title>
+</head>
+<body>
+	<h1>
+	    Edit data 'Order No {{ order.order_id }}'
+	</h1>
+	<table id="orderN{{ order.order_id }}">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>name</th>
+				<th>count</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for session in order.sessions %}
+		<tr>
+			<td>{{ loop.index }}</td>
+			<td>{{ session.session.film.name }}</td>
+			<td>{{ session.count }}</td>
+		</tr>
+    	{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>
