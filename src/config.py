@@ -9,7 +9,7 @@ SPECIFICATION_PATH = SOURCES_PATH
 SECRETS_PATH = ROOT_PATH
 
 
-with open(SECRETS_PATH / "secrets.yaml", 'r') as file_buffer:
+with open(SECRETS_PATH / "secrets", 'r') as file_buffer:
     s = yaml.load(file_buffer, Loader=yaml.Loader)
     __db_schema = s.get("DB_SCHEMA")
     __db_name = s.get("DB_NAME")
