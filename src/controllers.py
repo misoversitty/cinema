@@ -53,6 +53,25 @@ class OrdersController:
             order = session.execute(stmt).scalar()
             return order_schema.dump(order)
 
+    @staticmethod
+    def create(*args, **kwargs):
+        order = kwargs.get("body")
+        data = order_schema.load(order)
+        customer_id = data.get("customer_id")
+        sessions_args = data.get("sessions")
+
+        with Session(engine) as session:
+            new_order = Order(customer_id=customer_id)
+            for filmsession_args in sessions_args:
+                session_id = filmsession_args.get("session").get("session_id")
+                count = filmsession_args.get("count")
+                association = OrderSessionAssociation(count=count)
+                stmt = select(FilmSession).where(FilmSession.session_id == session_id)
+                association.session = session.execute(stmt).scalar()
+                new_order.sessions.append(association)
+            session.add(new_order)
+            session.commit()
+
 
 class CustomersController:
     @staticmethod
