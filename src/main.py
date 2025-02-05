@@ -1,7 +1,7 @@
 import requests
 from connexion import FlaskApp
 from connexion.resolver import MethodResolver
-from flask import render_template
+from flask import render_template, request
 
 from config import *
 
@@ -27,8 +27,11 @@ def show_customers():
 
 @app.route("/customers/<int:id>")
 def show_customer(id):
-    customer = requests.get(f"http://localhost:8000/api/customers/{id}").json()
-    return render_template("customer.html", customer=customer)
+    if request.method == "GET":
+        customer = requests.get(f"http://localhost:8000/api/customers/{id}").json()
+        return render_template("customer.html", customer=customer)
+    elif request.method == "POST":
+        pass
 
 
 if __name__ == "__main__":
