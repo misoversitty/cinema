@@ -21,15 +21,13 @@ def index():
 
 @app.route("/customers")
 def show_customers():
-    request = requests.get("http://localhost:8000/api/customers")
-    customers = request.json()
+    customers = requests.get("http://localhost:8000/api/customers").json()
     return render_template("customers.html", customers=customers)
 
 
 @app.route("/customers/<int:id>")
 def show_customer(id):
-    request = requests.get(f"http://localhost:8000/api/customers/{id}")
-    customer = request.json()
+    customer = requests.get(f"http://localhost:8000/api/customers/{id}").json()
     return render_template("customer.html", customer=customer)
 
 
