@@ -22,10 +22,10 @@
 		<tbody>
 		{% for customer in customers %}
 		<tr>
-			<td><a href="/api/customers/{{ customer.customer_id }}">{{ customer.customer_id }}</a></td>
-			<td><a href="/api/customers/{{ customer.customer_id }}">{{ customer.first_name }}</a></td>
-			<td><a href="/api/customers/{{ customer.customer_id }}">{{ customer.last_name }}</a></td>
-			<td><a href="/api/customers/{{ customer.customer_id }}">{{ customer.middle_name }}</a></td>
+			<td><a href="/customers/{{ customer.customer_id }}">{{ customer.customer_id }}</a></td>
+			<td><a href="/customers/{{ customer.customer_id }}">{{ customer.first_name }}</a></td>
+			<td><a href="/customers/{{ customer.customer_id }}">{{ customer.last_name }}</a></td>
+			<td><a href="/customers/{{ customer.customer_id }}">{{ customer.middle_name }}</a></td>
 		</tr>
     	{% endfor %}
 		</tbody>

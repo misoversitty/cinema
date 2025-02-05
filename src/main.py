@@ -14,11 +14,23 @@ def main():
     app.run(host="0.0.0.0", port=8000)
 
 
+@app.route("/")
+def index():
+    return "", 200
+
+
 @app.route("/customers")
 def show_customers():
     request = requests.get("http://localhost:8000/api/customers")
     customers = request.json()
     return render_template("customers.html", customers=customers)
+
+
+@app.route("/customers/<int:id>")
+def show_customer(id):
+    request = requests.get(f"http://localhost:8000/api/customers/{id}")
+    customer = request.json()
+    return render_template("customer.html", customer=customer)
 
 
 if __name__ == "__main__":
