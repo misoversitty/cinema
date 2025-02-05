@@ -14,12 +14,16 @@
 		<thead>
 			<tr>
     			<th>id</th>
+				<th>name</th>
+				<th>datetime</th>
   			</tr>
 		</thead>
 		<tbody>
 		{% for session in sessions %}
 		<tr>
 			<td><a href="/filmsessions/{{ session.session_id }}">{{ session.session_id }}</a></td>
+			<td><a href="/filmsessions/{{ session.session_id }}">{{ session.film.name }}</a></td>
+			<td><a href="/filmsessions/{{ session.session_id }}">{{ session.date }}</a></td>
 		</tr>
     	{% endfor %}
 		</tbody>
