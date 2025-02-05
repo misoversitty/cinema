@@ -7,6 +7,31 @@ servers:
   - url: "/api"
 components:
   schemas:
+    film:
+      type: "object"
+      required:
+        - name
+      properties:
+        name:
+          type: "string"
+    filmsession:
+      type: "object"
+      required:
+        - film
+      properties:
+        film: 
+          $ref: "#components/schemas/film"
+        date:
+          type: "string"
+    order:
+      type: "object"
+      required:
+        - customer
+      properties:
+        sessions:
+          type: "array"
+          items:
+            $ref: "#components/schemas/filmsession"
     customer:
       type: "object"
       required:
