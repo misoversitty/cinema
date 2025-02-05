@@ -1,9 +1,9 @@
+from datetime import datetime
 from typing import List
 from typing import Optional
 
 from sqlalchemy import ForeignKey
-from sqlalchemy import Table, Column
-from sqlalchemy import String, Integer
+from sqlalchemy import String, Integer, DateTime
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
@@ -59,3 +59,4 @@ class FilmSession(Base):
     film_id: Mapped[int] = mapped_column(ForeignKey("films.film_id"))
     film: Mapped["Film"] = relationship(back_populates="sessions")
     orders: Mapped[List["OrderSessionAssociation"]] = relationship(back_populates="session")
+    date: Mapped[datetime] = mapped_column(DateTime)

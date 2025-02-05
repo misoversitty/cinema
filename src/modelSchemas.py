@@ -30,6 +30,7 @@ class FilmSessionSchema(Schema):
     session_id = fields.Int()
     film = fields.Nested("FilmSchema", exclude=["sessions"])
     orders = fields.List(fields.Nested("OrderSessionAssociationSchema", exclude=["session"]))
+    date = fields.String()
     include_relationships = True
 filmSession_schema = FilmSessionSchema()
 filmSessions_schema = FilmSessionSchema(many=True)
