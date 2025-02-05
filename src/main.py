@@ -34,5 +34,11 @@ def show_customer(id):
         pass
 
 
+@app.route("/orders")
+def show_orders():
+    orders = requests.get("http://localhost:8000/api/orders").json()
+    return render_template("orders.html", orders=orders)
+
+
 if __name__ == "__main__":
     main()
