@@ -22,6 +22,7 @@ films_schema = FilmSchema(many=True)
 class OrderSchema(Schema):
     order_id = fields.Int()
     sessions = fields.List(fields.Nested("OrderSessionAssociationSchema", exclude=["order"]))
+    customer = fields.Nested("CustomerSchema", exclude=["first_name", "last_name", "middle_name"])
 order_schema = OrderSchema()
 orders_schema = OrderSchema(many=True)
 
