@@ -55,6 +55,15 @@ def show_filmsessions():
     return render_template("filmsessions.html", sessions=sessions)
 
 
+@app.route("/filmsessions/<int:id>")
+def show_filmsession(id):
+    if request.method == "GET":
+        session = requests.get(f"http://localhost:8000/api/filmsessions/{id}").json()
+        return render_template("filmsession.html", session=session)
+    elif request.method == "POST":
+        pass
+
+
 @app.route("/films")
 def show_films():
     films = requests.get("http://localhost:8000/api/films").json()
