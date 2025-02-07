@@ -16,7 +16,7 @@ class Base(DeclarativeBase):
 
 class Customer(Base):
     __tablename__ = "customers"
-    customer_id: Mapped[int] = mapped_column(primary_key=True)
+    customer_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     first_name: Mapped[str] = mapped_column(String)
     last_name: Mapped[str] = mapped_column(String)
     middle_name: Mapped[str] = mapped_column(String)
@@ -26,7 +26,7 @@ class Customer(Base):
 
 class Film(Base):
     __tablename__ = "films"
-    film_id: Mapped[int] = mapped_column(primary_key=True)
+    film_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String)
     sessions: Mapped[List["FilmSession"]] = relationship(back_populates="film")
 
@@ -34,32 +34,34 @@ class Film(Base):
 class OrderTicketAssociation(Base):
     __tablename__ = "order_ticket_link"
     order_id: Mapped[int] = mapped_column("order_id",
+                                          Integer,
                                           ForeignKey("orders.order_id"),
                                           primary_key=True)
     ticket_id: Mapped[int] = mapped_column("ticket_id",
-                                            ForeignKey("tickets.ticket_id"),
-                                            primary_key=True)
+                                           Integer,
+                                           ForeignKey("tickets.ticket_id"),
+                                           primary_key=True)
 
 
 class Order(Base):
     __tablename__ = "orders"
-    order_id: Mapped[int] = mapped_column(primary_key=True)
-    customer_id: Mapped[int] = mapped_column(ForeignKey("customers.customer_id"))
+    order_id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    customer_id: Mapped[int] = mapped_column(Integer, ForeignKey("customers.customer_id"))
     customer: Mapped["Customer"] = relationship(back_populates="orders")
     tickets: Mapped[List["OrderTicketAssociation"]] = relationship()
 
 
 class FilmSession(Base):
     __tablename__ = "sessions"
-    session_id: Mapped[int] = mapped_column(primary_key=True)
-    film_id: Mapped[int] = mapped_column(ForeignKey("films.film_id"))
+    session_id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    film_id: Mapped[int] = mapped_column(Integer, ForeignKey("films.film_id"))
     film: Mapped["Film"] = relationship(back_populates="sessions")
     date: Mapped[datetime] = mapped_column(DateTime)
 
 
 class Ticket(Base):
     __tablename__ = "tickets"
-    ticket_id: Mapped[int] = mapped_column(primary_key=True)
-    session_id: Mapped[int] = mapped_column(ForeignKey("sessions.session_id"))
+    ticket_id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    session_id: Mapped[int] = mapped_column(Integer, ForeignKey("sessions.session_id"))
     session: Mapped["FilmSession"] = relationship()
-    cost_rub: Mapped[int] = mapped_column()
+    cost_rub: Mapped[int] = mapped_column(Integer)
