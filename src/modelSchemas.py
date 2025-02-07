@@ -23,7 +23,7 @@ class OrderSchema(Schema):
     order_id = fields.Int()
     customer_id = fields.Integer()
     customer = fields.Nested("CustomerSchema", exclude=["first_name", "last_name", "middle_name", "orders"])
-    tickets = fields.List(fields.Nested("OrderTicketAssociationSchema"))
+    tickets = fields.List(fields.Nested("TicketSchema"))
 order_schema = OrderSchema()
 orders_schema = OrderSchema(many=True)
 
@@ -32,7 +32,6 @@ class FilmSessionSchema(Schema):
     session_id = fields.Int()
     film = fields.Nested("FilmSchema", exclude=["sessions"])
     date = fields.String()
-    include_relationships = True
 filmSession_schema = FilmSessionSchema()
 filmSessions_schema = FilmSessionSchema(many=True)
 
@@ -40,9 +39,8 @@ filmSessions_schema = FilmSessionSchema(many=True)
 class TicketSchema(Schema):
     ticket_id = fields.Int()
     session_id = fields.Int()
+    session = fields.Nested("FilmSessionSchema")
+    order_id = fields.Int()
     cost_rub = fields.Int()
 ticket_schema = TicketSchema()
 tickets_schema = TicketSchema(many=True)
-
-class OrderTicketAssociationSchema(Schema):
-    ticket_id = fields.Int()

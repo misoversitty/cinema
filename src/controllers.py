@@ -58,15 +58,15 @@ class OrdersController:
         data = kwargs.get("body")
         order_args = order_schema.load(data)
         customer_id = order_args.get("customer_id")
-        tickets = order_args.get("tickets")
+        tickets_args = order_args.get("tickets")
 
         with Session(engine) as session:
             new_order = Order(customer_id=customer_id)
-            for ticket in tickets:
-                ticket_id = ticket.get("ticket_id")
-                association = OrderTicketAssociation()
-                association.ticket_id = ticket_id
-                new_order.tickets.append(association)
+            for ticket_args in tickets_args:
+                ticket_id = ticket_args.get("ticket_id")
+                stmt = select(Ticket).where(Ticket.ticket_id == ticket_id)
+                ticket = session.execute(stmt).scalar()
+                new_order.tickets.append(ticket)
             session.add(new_order)
             session.commit()
         return "", 201

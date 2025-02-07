@@ -31,24 +31,12 @@ class Film(Base):
     sessions: Mapped[List["FilmSession"]] = relationship(back_populates="film")
 
 
-class OrderTicketAssociation(Base):
-    __tablename__ = "order_ticket_link"
-    order_id: Mapped[int] = mapped_column("order_id",
-                                          Integer,
-                                          ForeignKey("orders.order_id"),
-                                          primary_key=True)
-    ticket_id: Mapped[int] = mapped_column("ticket_id",
-                                           Integer,
-                                           ForeignKey("tickets.ticket_id"),
-                                           primary_key=True)
-
-
 class Order(Base):
     __tablename__ = "orders"
     order_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     customer_id: Mapped[int] = mapped_column(Integer, ForeignKey("customers.customer_id"))
     customer: Mapped["Customer"] = relationship(back_populates="orders")
-    tickets: Mapped[List["OrderTicketAssociation"]] = relationship()
+    tickets: Mapped[List["Ticket"]] = relationship(back_populates="order")
 
 
 class FilmSession(Base):
@@ -65,3 +53,5 @@ class Ticket(Base):
     session_id: Mapped[int] = mapped_column(Integer, ForeignKey("sessions.session_id"))
     session: Mapped["FilmSession"] = relationship()
     cost_rub: Mapped[int] = mapped_column(Integer)
+    order_id: Mapped[int] = mapped_column(Integer, ForeignKey("orders.order_id"))
+    order: Mapped["Order"] = relationship(back_populates="tickets")
