@@ -55,10 +55,10 @@ class OrdersController:
 
     @staticmethod
     def create(*args, **kwargs):
-        order = kwargs.get("body")
-        data = order_schema.load(order)
-        customer_id = data.get("customer_id")
-        tickets = data.get("tickets")
+        data = kwargs.get("body")
+        order_args = order_schema.load(data)
+        customer_id = order_args.get("customer_id")
+        tickets = order_args.get("tickets")
 
         with Session(engine) as session:
             new_order = Order(customer_id=customer_id)
