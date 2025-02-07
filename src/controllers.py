@@ -58,19 +58,18 @@ class OrdersController:
         order = kwargs.get("body")
         data = order_schema.load(order)
         customer_id = data.get("customer_id")
-        sessions_args = data.get("sessions")
+        tickets = data.get("tickets")
 
         with Session(engine) as session:
             new_order = Order(customer_id=customer_id)
-            for filmsession_args in sessions_args:
-                session_id = filmsession_args.get("session").get("session_id")
-                count = filmsession_args.get("count")
-                association = OrderSessionAssociation(count=count)
-                stmt = select(FilmSession).where(FilmSession.session_id == session_id)
-                association.session = session.execute(stmt).scalar()
-                new_order.sessions.append(association)
+            for ticket in tickets:
+                ticket_id = ticket.get("ticket_id")
+                association = OrderTicketAssociation()
+                association.ticket_id = ticket_id
+                new_order.tickets.append(association)
             session.add(new_order)
             session.commit()
+        return "", 201
 
 
 class CustomersController:

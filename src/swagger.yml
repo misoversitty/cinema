@@ -30,15 +30,13 @@ components:
           type: "integer"
         customer_id:
           type: "integer"
-        sessions:
+        tickets:
           type: "array"
           items:
             type: "object"
             properties:
-              count:
+              ticket_id:
                 type: "integer"
-              session:
-                $ref: "#/components/schemas/filmsession"
     customer:
       type: "object"
       properties:
