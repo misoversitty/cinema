@@ -42,3 +42,10 @@ class OrderSessionAssociationSchema(Schema):
     order = fields.Nested("OrderSchema", exclude=["sessions"])
     session = fields.Nested("FilmSessionSchema", exclude=["orders"])
     count = fields.Integer()
+
+class TicketSchema(Schema):
+    ticket_id = fields.Int()
+    session_id = fields.Int()
+    cost_rub = fields.Int()
+ticket_schema = TicketSchema()
+tickets_schema = TicketSchema(many=True)

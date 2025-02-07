@@ -58,5 +58,12 @@ class FilmSession(Base):
     session_id: Mapped[int] = mapped_column(primary_key=True)
     film_id: Mapped[int] = mapped_column(ForeignKey("films.film_id"))
     film: Mapped["Film"] = relationship(back_populates="sessions")
-    orders: Mapped[List["OrderSessionAssociation"]] = relationship(back_populates="session")
+    #orders: Mapped[List["OrderSessionAssociation"]] = relationship(back_populates="session")
     date: Mapped[datetime] = mapped_column(DateTime)
+
+class Ticket(Base):
+    __tablename__ = "tickets"
+    ticket_id: Mapped[int] = mapped_column(primary_key=True)
+    session_id: Mapped[int] = mapped_column(ForeignKey("sessions.session_id"))
+    session: Mapped["FilmSession"] = relationship()
+    cost_rub: Mapped[int] = mapped_column()
