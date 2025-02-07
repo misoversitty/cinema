@@ -20,12 +20,12 @@
 			</tr>
 		</thead>
 		<tbody>
-		{% for session in order.sessions %}
+		{% for ticket in order.tickets %}
 		<tr>
 			<td>{{ loop.index }}</td>
-			<td>{{ session.session.film.name }}</td>
-			<td>{{ session.count }}</td>
-			<td>{{ session.session.date }}</td>
+			<td>{{ ticket.ticket_id }}</td>
+			<td>{{ ticket.session.film.name }}</td>
+			<td>{{ ticket.session.date }}</td>
 		</tr>
     	{% endfor %}
 		</tbody>
