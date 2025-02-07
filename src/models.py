@@ -31,19 +31,14 @@ class Film(Base):
     sessions: Mapped[List["FilmSession"]] = relationship(back_populates="film")
 
 
-class OrderSessionAssociation(Base):
-    __tablename__ = "orders_list"
+class OrderTicketAssociation(Base):
+    __tablename__ = "order_ticket_link"
     order_id: Mapped[int] = mapped_column("order_id",
                                           ForeignKey("orders.order_id"),
                                           primary_key=True)
-    order: Mapped["Order"] = relationship(back_populates="sessions")
-
-    session_id: Mapped[int] = mapped_column("session_id",
-                                            ForeignKey("sessions.session_id"),
+    ticket_id: Mapped[int] = mapped_column("ticket_id",
+                                            ForeignKey("tickets.ticket_id"),
                                             primary_key=True)
-    session: Mapped["FilmSession"] = relationship(back_populates="orders")
-
-    count: Mapped[int] = mapped_column(Integer)
 
 
 class Order(Base):
@@ -51,15 +46,16 @@ class Order(Base):
     order_id: Mapped[int] = mapped_column(primary_key=True)
     customer_id: Mapped[int] = mapped_column(ForeignKey("customers.customer_id"))
     customer: Mapped["Customer"] = relationship(back_populates="orders")
-    sessions: Mapped[List["OrderSessionAssociation"]] = relationship(back_populates="order")
+    tickets: Mapped[List["OrderTicketAssociation"]] = relationship()
+
 
 class FilmSession(Base):
     __tablename__ = "sessions"
     session_id: Mapped[int] = mapped_column(primary_key=True)
     film_id: Mapped[int] = mapped_column(ForeignKey("films.film_id"))
     film: Mapped["Film"] = relationship(back_populates="sessions")
-    #orders: Mapped[List["OrderSessionAssociation"]] = relationship(back_populates="session")
     date: Mapped[datetime] = mapped_column(DateTime)
+
 
 class Ticket(Base):
     __tablename__ = "tickets"
