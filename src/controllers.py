@@ -103,3 +103,18 @@ class CustomersController:
             session.add(new_customer)
             session.commit()
         return "", 201
+
+class TicketsController:
+    @staticmethod
+    def read_all():
+        with Session(engine) as session:
+            stmt = select(Ticket)
+            tickets = session.execute(stmt).scalars()
+            return tickets_schema.dump(tickets)
+
+    @staticmethod
+    def read_one(ticket_id: int):
+        with Session(engine) as session:
+            stmt = select(Ticket).where(Ticket.ticket_id == ticket_id)
+            ticket = session.execute(stmt).scalar()
+            return ticket_schema.dump(ticket)

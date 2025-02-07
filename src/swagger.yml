@@ -79,6 +79,13 @@ components:
       required: True
       schema:
         type: "integer"
+    ticket_id:
+      name: "ticket_id"
+      description: "Ticket id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
 paths:
   /films:
     get:
@@ -189,6 +196,26 @@ paths:
       summary: "Read one customer"
       parameters:
         - $ref: "#/components/parameters/customer_id"
+      responses:
+        "200":
+          description: "Success"
+  /tickets:
+    get:
+      operationId: "controllers.TicketsController.read_all"
+      tags:
+        - "tickets"
+      summary: "Read the list of tickets"
+      responses:
+        "200":
+          description: "Success"
+  /tickets/{ticket_id}:
+    get:
+      operationId: "controllers.TicketsController.read_one"
+      tags:
+        - "tickets"
+      summary: "Read one ticket"
+      parameters:
+        - $ref: "#/components/parameters/ticket_id"
       responses:
         "200":
           description: "Success"
