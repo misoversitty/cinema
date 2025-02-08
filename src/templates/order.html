@@ -1,34 +1,32 @@
 <!-- templates/order.html -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Editing data</title>
-</head>
-<body>
-	<h1>
-	    Edit data 'Order No {{ order.order_id }}'
-	</h1>
-	<table id="orderN{{ order.order_id }}">
-		<thead>
-			<tr>
-				<th>No</th>
-				<th>name</th>
-				<th>count</th>
-				<th>date</th>
-			</tr>
-		</thead>
-		<tbody>
-		{% for ticket in order.tickets %}
+{% extends 'base.html' %}
+
+{% block title %}Editing data{% endblock %}
+
+{% block header %}
+<h1>Edit data 'Order No {{ order.order_id }}'</h1>
+{% endblock %}
+
+{% block content %}
+<table id="orderN{{ order.order_id }}">
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>name</th>
+			<th>count</th>
+			<th>date</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for ticket in order.tickets %}
 		<tr>
 			<td>{{ loop.index }}</td>
 			<td>{{ ticket.ticket_id }}</td>
 			<td>{{ ticket.session.film.name }}</td>
 			<td>{{ ticket.session.date }}</td>
 		</tr>
-    	{% endfor %}
-		</tbody>
-	</table>
-</body>
-</html>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

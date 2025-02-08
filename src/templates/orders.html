@@ -1,28 +1,26 @@
 <!-- templates/orders.html -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Cinema-app</title>
-</head>
-<body>
-	<h1>
-	    Orders
-	</h1>
-	<table id="orders">
-		<thead>
-			<tr>
-    			<th>id</th>
-  			</tr>
-		</thead>
-		<tbody>
-		{% for order in orders %}
+{% extends 'base.html' %}
+
+{% block title %}Cinema-app{% endblock %}
+
+{% block header %}
+<h1>Orders</h1>
+{% endblock %}
+
+{% block content %}
+<table id="orders">
+	<thead>
+		<tr>
+			<th>id</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for order in orders %}
 		<tr>
 			<td><a href="/orders/{{ order.order_id }}">{{ order.order_id }}</a></td>
 		</tr>
-    	{% endfor %}
-		</tbody>
-    </table>
-</body>
-</html>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
