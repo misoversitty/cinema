@@ -1,0 +1,14 @@
+<!-- templates/film.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Cinema-app{% endblock %}
+
+{% block header %}
+<h1>Edit data 'Film '{{ film.name }}'</h1>
+{% endblock %}
+
+{% block content %}
+<input type="text" id="film_id" name="film_id" value="{{ film.film_id }}">
+<input type="text" id="name" name="name" value="{{ film.name }}">
+{% endblock %}

@@ -52,4 +52,11 @@ def registryViews(app: FlaskApp):
     def show_films():
         films = requests.get("http://localhost:8000/api/films").json()
         return render_template("films.html", films=films)
-    
+
+    @app.route("/films/<int:id>")
+    def show_film(id):
+        if request.method == "GET":
+            film = requests.get(f"http://localhost:8000/api/films/{id}").json()
+            return render_template("film.html", film=film)
+        elif request.method == "POST":
+            pass
