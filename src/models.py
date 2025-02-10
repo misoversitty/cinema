@@ -55,3 +55,27 @@ class Ticket(Base):
     cost_rub: Mapped[int] = mapped_column(Integer)
     order_id: Mapped[int] = mapped_column(Integer, ForeignKey("orders.order_id"))
     order: Mapped["Order"] = relationship(back_populates="tickets")
+
+
+class User(Base):
+    __tablename__ = "users"
+    user_id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    username: Mapped[str] = mapped_column(String)
+    email: Mapped[str] = mapped_column(String)
+    phone_number: [str] = mapped_column(String)
+    password_hash: Mapped[str] = mapped_column(String)
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_authenticated(self):
+        return self.is_active
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.user_id
