@@ -84,6 +84,11 @@ components:
       required: True
       schema:
         type: "integer"
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+      x-basicInfoFunc: "controllers.AuthenticationController.authenticate"
 paths:
   /films:
     get:
