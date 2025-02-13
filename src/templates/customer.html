@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block content %}
-<input type="text" id="last_name" name="last_name" value="{{ customer.last_name }}">
-<input type="text" id="first_name" name="first_name" value="{{ customer.first_name }}">
-<input type="text" id="middle_name" name="middle_name" value="{{ customer.middle_name }}">
 <form action="" method="POST">
+	<input type="text" id="last_name" name="last_name" value="{{ customer.last_name }}">
+	<input type="text" id="first_name" name="first_name" value="{{ customer.first_name }}">
+	<input type="text" id="middle_name" name="middle_name" value="{{ customer.middle_name }}">
 	<input type="submit" value="Submit">
 </form>
 {% endblock %}
