@@ -202,6 +202,24 @@ paths:
       responses:
         "200":
           description: "Success"
+    post:
+      operationId: "controllers.CustomersController.update"
+      tags:
+        - "customers"
+      summary: "Update customer data"
+      requestBody:
+        description: "Customer to update"
+        required: True
+        content:
+          application/json:
+            schema:
+              x-body-name: "customer"
+              $ref: "#/components/schemas/customer"
+      parameters:
+        - $ref: "#/components/parameters/customer_id"
+      responses:
+        "201":
+          description: "Successfully created customer"
   /tickets:
     get:
       operationId: "controllers.TicketsController.read_all"

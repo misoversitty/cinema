@@ -115,6 +115,23 @@ class CustomersController:
             session.commit()
         return "", 201
 
+    @staticmethod
+    def update(*args, **kwargs):
+        customer_id = kwargs.get("customer_id")
+        customer = kwargs.get("body")
+        data = customer_schema.load(customer)
+        first_name = data.get("first_name")
+        last_name = data.get("last_name")
+        middle_name = data.get("middle_name")
+        with Session(engine) as session:
+            stmt = select(Customer).where(Customer.customer_id == customer_id)
+            customer_object = session.execute(stmt).scalar()
+            customer_object.first_name = first_name
+            customer_object.last_name = last_name
+            customer_object.middle_name = middle_name
+            session.commit()
+        return "", 201
+
 class TicketsController:
     @staticmethod
     def read_all():

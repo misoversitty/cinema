@@ -16,13 +16,20 @@ def registryViews(app: FlaskApp):
         customers = requests.get("http://localhost:8000/api/customers").json()
         return render_template("customers.html", customers=customers)
 
-    @app.route("/customers/<int:id>")
+    @app.route("/customers/<int:id>", methods=["POST", "GET"])
     def show_customer(id):
         if request.method == "GET":
             customer = requests.get(f"http://localhost:8000/api/customers/{id}").json()
             return render_template("customer.html", customer=customer)
         elif request.method == "POST":
-            pass
+            last_name = request.form.get("last_name")
+            first_name = request.form.get("first_name")
+            middle_name = request.form.get("middle_name")
+            data = {"last_name": last_name,
+                    "first_name": first_name,
+                    "middle_name": middle_name}
+            res = requests.post(f"http://localhost:8000/api/customers/{id}", json=data)
+            return "", 201
 
     @app.route("/customers/add_new", methods=["POST", "GET"])
     def add_customer():
