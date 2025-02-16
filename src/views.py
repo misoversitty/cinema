@@ -62,6 +62,12 @@ def registryViews(app: FlaskApp):
         elif request.method == "POST":
             pass
 
+    @app.route("/orders/add_new", methods=["POST", "GET"])
+    def add_order():
+        if request.method == "POST":
+            pass
+        return render_template("order.html", order=None)
+
     @app.route("/filmsessions")
     def show_filmsessions():
         sessions = requests.get("http://localhost:8000/api/filmsessions").json()
