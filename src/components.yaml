@@ -1,0 +1,84 @@
+components:
+  schemas:
+    film:
+      type: "object"
+      properties:
+        film_id:
+          type: "integer"
+        name:
+          type: "string"
+    filmsession:
+      type: "object"
+      properties:
+        session_id:
+          type: "integer"
+        film_id: 
+          type: "integer"
+        date:
+          type: "string"
+    order:
+      type: "object"
+      properties:
+        order_id: 
+          type: "integer"
+        customer_id:
+          type: "integer"
+        tickets:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              ticket_id:
+                type: "integer"
+    customer:
+      type: "object"
+      properties:
+        customer_id:
+          type: "integer"
+        first_name:
+          type: "string"
+        last_name: 
+          type: "string"
+        middle_name: 
+          type: "string"
+  parameters:
+    film_id:
+      name: "film_id"
+      description: "Film id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
+    filmsession_id:
+      name: "filmsession_id"
+      description: "Filmsession id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
+    order_id:
+      name: "order_id"
+      description: "Order id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
+    customer_id:
+      name: "customer_id"
+      description: "Customer id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
+    ticket_id:
+      name: "ticket_id"
+      description: "Ticket id"
+      in: path
+      required: True
+      schema:
+        type: "integer"
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+      x-basicInfoFunc: "controllers.AuthenticationController.authenticate"

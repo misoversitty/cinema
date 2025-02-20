@@ -6,7 +6,7 @@ from views import registryViews
 
 
 app = FlaskApp(__name__, specification_dir=SPECIFICATION_PATH)
-app.add_api("swagger.yml", resolver=MethodResolver('controllers'))
+app.add_api("swagger.yaml", resolver=MethodResolver('controllers'))
 registryViews(app)
 
 

@@ -6,89 +6,9 @@ info:
 servers:
   - url: "/api"
 components:
-  schemas:
-    film:
-      type: "object"
-      properties:
-        film_id:
-          type: "integer"
-        name:
-          type: "string"
-    filmsession:
-      type: "object"
-      properties:
-        session_id:
-          type: "integer"
-        film_id: 
-          type: "integer"
-        date:
-          type: "string"
-    order:
-      type: "object"
-      properties:
-        order_id: 
-          type: "integer"
-        customer_id:
-          type: "integer"
-        tickets:
-          type: "array"
-          items:
-            type: "object"
-            properties:
-              ticket_id:
-                type: "integer"
-    customer:
-      type: "object"
-      properties:
-        customer_id:
-          type: "integer"
-        first_name:
-          type: "string"
-        last_name: 
-          type: "string"
-        middle_name: 
-          type: "string"
-  parameters:
-    film_id:
-      name: "film_id"
-      description: "Film id"
-      in: path
-      required: True
-      schema:
-        type: "integer"
-    filmsession_id:
-      name: "filmsession_id"
-      description: "Filmsession id"
-      in: path
-      required: True
-      schema:
-        type: "integer"
-    order_id:
-      name: "order_id"
-      description: "Order id"
-      in: path
-      required: True
-      schema:
-        type: "integer"
-    customer_id:
-      name: "customer_id"
-      description: "Customer id"
-      in: path
-      required: True
-      schema:
-        type: "integer"
-    ticket_id:
-      name: "ticket_id"
-      description: "Ticket id"
-      in: path
-      required: True
-      schema:
-        type: "integer"
   securitySchemes:
     basic:
-      type: http
-      scheme: basic
-      x-basicInfoFunc: "controllers.AuthenticationController.authenticate"
+      $ref: "security.yaml#/components/securitySchemes/basic"
 paths:
   /films:
     get:
@@ -106,7 +26,7 @@ paths:
         - "films"
       summary: "Read one film"
       parameters:
-        - $ref: "#/components/parameters/film_id"
+        - $ref: "components.yaml#/components/parameters/film_id"
       responses:
         "200":
           description: "Success"
@@ -126,7 +46,7 @@ paths:
         - "filmSessions"
       summary: "Read one session"
       parameters:
-        - $ref: "#/components/parameters/filmsession_id"
+        - $ref: "components.yaml#/components/parameters/filmsession_id"
       responses:
         "200":
           description: "Success"
@@ -151,7 +71,7 @@ paths:
           application/json:
             schema:
               x-body-name: "order"
-              $ref: "#/components/schemas/order"
+              $ref: "components.yaml#/components/schemas/order"
       responses:
         "201":
           description: "Successfully created order"
@@ -162,7 +82,7 @@ paths:
         - "orders"
       summary: "Read one order"
       parameters:
-        - $ref: "#/components/parameters/order_id"
+        - $ref: "components.yaml#/components/parameters/order_id"
       responses:
         "200":
           description: "Success"
@@ -187,7 +107,7 @@ paths:
           application/json:
             schema:
               x-body-name: "customer"
-              $ref: "#/components/schemas/customer"
+              $ref: "components.yaml#/components/schemas/customer"
       responses:
         "201":
           description: "Successfully created customer"
@@ -198,7 +118,7 @@ paths:
         - "customers"
       summary: "Read one customer"
       parameters:
-        - $ref: "#/components/parameters/customer_id"
+        - $ref: "components.yaml#/components/parameters/customer_id"
       responses:
         "200":
           description: "Success"
@@ -214,9 +134,9 @@ paths:
           application/json:
             schema:
               x-body-name: "customer"
-              $ref: "#/components/schemas/customer"
+              $ref: "components.yaml#/components/schemas/customer"
       parameters:
-        - $ref: "#/components/parameters/customer_id"
+        - $ref: "components.yaml#/components/parameters/customer_id"
       responses:
         "201":
           description: "Successfully created customer"
@@ -236,7 +156,7 @@ paths:
         - "tickets"
       summary: "Read one ticket"
       parameters:
-        - $ref: "#/components/parameters/ticket_id"
+        - $ref: "components.yaml#/components/parameters/ticket_id"
       responses:
         "200":
           description: "Success"
