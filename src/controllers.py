@@ -33,6 +33,17 @@ class FilmsController:
             film = session.execute(stmt).scalar()
             return film_schema.dump(film), 200
 
+    @staticmethod
+    def create(*args, **kwargs):
+        film = kwargs.get("body")
+        data = film_schema.load(film)
+        name = data.get("name")
+        with Session(engine) as session:
+            new_film = Film(name=name)
+            session.add(new_film)
+            session.commit()
+        return "", 201
+
 
 class FilmSessionsController:
     @staticmethod

@@ -19,6 +19,22 @@ paths:
       responses:
         "200":
           description: "Success"
+    post:
+      operationId: "controllers.FilmsController.create"
+      tags:
+        - "films"
+      summary: "Add new film"
+      requestBody:
+        description: "Film to create"
+        required: True
+        content:
+          application/json:
+            schema:
+              x-body-name: "film"
+              $ref: "components.yaml#/components/schemas/film"
+      responses:
+        "201":
+          description: "Successfully created film"
   /films/{film_id}:
     get:
       operationId: "controllers.FilmsController.read_one"

@@ -9,6 +9,9 @@
 {% endblock %}
 
 {% block content %}
-<input type="text" id="film_id" name="film_id" value="{{ film.film_id }}">
-<input type="text" id="name" name="name" value="{{ film.name }}">
+<form action="" method="POST">
+	<input type="text" id="film_id" name="film_id" value="{{ film.film_id }}">
+	<input type="text" id="name" name="name" value="{{ film.name }}">
+	<input type="submit" value="Submit">
+</form>
 {% endblock %}

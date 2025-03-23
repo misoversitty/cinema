@@ -93,3 +93,17 @@ def registryViews(app: FlaskApp):
             return render_template("film.html", film=film)
         elif request.method == "POST":
             pass
+
+    @app.route("/films/add_new", methods=["POST", "GET"])
+    def add_film():
+        if request.method == "POST":
+            name = request.form.get("name")
+            data = {"name": name}
+            res = requests.post(f"http://localhost:8000/api/films", json=data)
+            if res.status_code == 201:
+                return redirect(url_for("film_created"))
+        return render_template("film.html", film=None)
+
+    @app.route("/film/add_new/success")
+    def film_created():
+        return render_template("film_created.html")
