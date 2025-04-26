@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 
 ROOT_PATH = Path(__file__).parent.parent.resolve()
 SOURCES_PATH = ROOT_PATH / "src"
-SPECIFICATION_PATH = SOURCES_PATH
+SPECIFICATION_PATH = SOURCES_PATH / "core"
 SECRETS_PATH = ROOT_PATH
 
 
