@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 
-from models import *
-from modelSchemas import *
+from core.models import *
+from core.schemas import *
 from config import engine
 
 
