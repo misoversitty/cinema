@@ -1,0 +1,41 @@
+film:
+  type: "object"
+  properties:
+    film_id:
+      type: "integer"
+    name:
+      type: "string"
+filmsession:
+  type: "object"
+  properties:
+    session_id:
+      type: "integer"
+    film_id:
+      type: "integer"
+    date:
+       type: "string"
+order:
+  type: "object"
+  properties:
+    order_id:
+      type: "integer"
+    customer_id:
+      type: "integer"
+    tickets:
+      type: "array"
+      items:
+        type: "object"
+        properties:
+          ticket_id:
+            type: "integer"
+customer:
+  type: "object"
+  properties:
+    customer_id:
+      type: "integer"
+    first_name:
+      type: "string"
+    last_name:
+      type: "string"
+    middle_name:
+      type: "string"
