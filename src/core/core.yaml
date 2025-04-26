@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: "Cinema-app"
+  description: "cinema-app for course-work"
+  version: 0.0.1
+servers:
+  - url: "/api"
+components:
+  securitySchemes:
+    basic:
+      $ref: "../auth/auth.yaml#/components/securitySchemes/basic"
+paths:
+  /films:
+    $ref: "core.paths.yaml#/~1films"
+  /films/{film_id}:
+    $ref: "core.paths.yaml#/~1films~1{film_id}"
+  /filmsessions:
+    $ref: "core.paths.yaml#/~1filmsessions"
+  /filmsessions/{filmsession_id}:
+    $ref: "core.paths.yaml#/~1filmsessions~1{filmsession_id}"
+  /orders:
+    $ref: "core.paths.yaml#/~1orders"
+  /orders/{order_id}:
+    $ref: "core.paths.yaml#/~1orders~1{order_id}"
+  /customers:
+    $ref: "core.paths.yaml#/~1customers"
+  /customers/{customer_id}:
+    $ref: "core.paths.yaml#/~1customers~1{customer_id}"
+  /tickets:
+    $ref: "core.paths.yaml#/~1tickets"
+  /tickets/{ticket_id}:
+    $ref: "core.paths.yaml#/~1tickets~1{ticket_id}"

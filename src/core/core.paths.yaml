@@ -1,0 +1,166 @@
+/films:
+  get:
+    operationId: "core.controllers.FilmsController.read_all"
+    tags:
+      - "films"
+    summary: "Read the list of films"
+    responses:
+      "200":
+        description: "Success"
+  post:
+    operationId: "core.controllers.FilmsController.create"
+    tags:
+      - "films"
+    summary: "Add new film"
+    requestBody:
+      description: "Film to create"
+      required: True
+      content:
+        application/json:
+          schema:
+            x-body-name: "film"
+            $ref: "core.components.yaml#/components/schemas/film"
+    responses:
+      "201":
+        description: "Successfully created film"
+/films/{film_id}:
+  get:
+    operationId: "core.controllers.FilmsController.read_one"
+    tags:
+      - "films"
+    summary: "Read one film"
+    parameters:
+      - $ref: "core.components.yaml#/components/parameters/film_id"
+    responses:
+      "200":
+        description: "Success"
+/filmsessions:
+  get:
+    operationId: "core.controllers.FilmSessionsController.read_all"
+    tags:
+      - "filmSessions"
+    summary: "Read the list of sessions"
+    responses:
+      "200":
+        description: "Success"
+/filmsessions/{filmsession_id}:
+  get:
+    operationId: "core.controllers.FilmSessionsController.read_one"
+    tags:
+      - "filmSessions"
+    summary: "Read one session"
+    parameters:
+      - $ref: "core.components.yaml#/components/parameters/filmsession_id"
+    responses:
+      "200":
+        description: "Success"
+/orders:
+  get:
+    operationId: "core.controllers.OrdersController.read_all"
+    tags:
+      - "orders"
+    summary: "Read the list of orders"
+    responses:
+      "200":
+        description: "Success"
+  post:
+    operationId: "core.controllers.OrdersController.create"
+    tags:
+      - "orders"
+    summary: "Create order"
+    requestBody:
+      description: "Order to create"
+      required: True
+      content:
+        application/json:
+          schema:
+            x-body-name: "order"
+            $ref: "core.components.yaml#/components/schemas/order"
+    responses:
+      "201":
+        description: "Successfully created order"
+/orders/{order_id}:
+  get:
+    operationId: "core.controllers.OrdersController.read_one"
+    tags:
+      - "orders"
+    summary: "Read one order"
+    parameters:
+      - $ref: "core.components.yaml#/components/parameters/order_id"
+    responses:
+      "200":
+        description: "Success"
+/customers:
+  get:
+    operationId: "core.controllers.CustomersController.read_all"
+    tags:
+      - "customers"
+    summary: "Read the list of customers"
+    responses:
+      "200":
+        description: "Success"
+  post:
+    operationId: "core.controllers.CustomersController.create"
+    tags:
+      - "customers"
+    summary: "Create a customer"
+    requestBody:
+      description: "Customer to create"
+      required: True
+      content:
+        application/json:
+          schema:
+            x-body-name: "customer"
+            $ref: "core.components.yaml#/components/schemas/customer"
+    responses:
+      "201":
+        description: "Successfully created customer"
+/customers/{customer_id}:
+  get:
+    operationId: "core.controllers.CustomersController.read_one"
+    tags:
+      - "customers"
+    summary: "Read one customer"
+    parameters:
+      - $ref: "core.components.yaml#/components/parameters/customer_id"
+    responses:
+      "200":
+        description: "Success"
+  post:
+    operationId: "core.controllers.CustomersController.update"
+    tags:
+      - "customers"
+    summary: "Update customer data"
+    requestBody:
+      description: "Customer to update"
+      required: True
+      content:
+        application/json:
+          schema:
+            x-body-name: "customer"
+            $ref: "core.components.yaml#/components/schemas/customer"
+    parameters:
+      - $ref: "core.components.yaml#/components/parameters/customer_id"
+    responses:
+      "201":
+        description: "Successfully created customer"
+/tickets:
+  get:
+    operationId: "core.controllers.TicketsController.read_all"
+    tags:
+      - "tickets"
+    summary: "Read the list of tickets"
+    responses:
+      "200":
+        description: "Success"
+/tickets/{ticket_id}:
+  get:
+    operationId: "core.controllers.TicketsController.read_one"
+    tags:
+      - "tickets"
+    summary: "Read one ticket"
+    parameters:
+      - $ref: "core.components.yaml#/components/parameters/ticket_id"
+    responses:
+      "200":
+        description: "Success"

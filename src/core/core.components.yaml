@@ -1,0 +1,21 @@
+components:
+  schemas:
+    film:
+      $ref: "core.schemas.yaml#film"
+    filmsession:
+      $ref: "core.schemas.yaml#filmsession"
+    order:
+      $ref: "core.schemas.yaml#order"
+    customer:
+      $ref: "core.schemas.yaml#customer"
+  parameters:
+    film_id:
+      $ref: "core.parameters.yaml#film_id"
+    filmsession_id:
+      $ref: "core.parameters.yaml#filmsession_id"
+    order_id:
+      $ref: "core.parameters.yaml#order_id"
+    customer_id:
+      $ref: "core.parameters.yaml#customer_id"
+    ticket_id:
+      $ref: "core.parameters.yaml#ticket_id"

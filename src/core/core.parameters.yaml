@@ -1,0 +1,35 @@
+film_id:
+  name: "film_id"
+  description: "Film id"
+  in: path
+  required: True
+  schema:
+    type: "integer"
+filmsession_id:
+  name: "filmsession_id"
+  description: "Filmsession id"
+  in: path
+  required: True
+  schema:
+    type: "integer"
+order_id:
+  name: "order_id"
+  description: "Order id"
+  in: path
+  required: True
+  schema:
+    type: "integer"
+customer_id:
+  name: "customer_id"
+  description: "Customer id"
+  in: path
+  required: True
+  schema:
+    type: "integer"
+ticket_id:
+  name: "ticket_id"
+  description: "Ticket id"
+  in: path
+  required: True
+  schema:
+    type: "integer"
