@@ -6,7 +6,7 @@
 
 {% block header %}
 <h1>Customers</h1>
-<h2><a href="/customers/add_new">Add new customer</a></h2>
+<h2><a href="{{ url_for('.add_customer') }}">Add new customer</a></h2>
 {% endblock %}
 
 {% block content %}
@@ -22,10 +22,10 @@
 	<tbody>
 	{% for customer in customers %}
 		<tr>
-			<td><a href="/customers/{{ customer.customer_id }}">{{ customer.customer_id }}</a></td>
-			<td><a href="/customers/{{ customer.customer_id }}">{{ customer.first_name }}</a></td>
-			<td><a href="/customers/{{ customer.customer_id }}">{{ customer.last_name }}</a></td>
-			<td><a href="/customers/{{ customer.customer_id }}">{{ customer.middle_name }}</a></td>
+			<td><a href="{{ url_for('.show_customer', id=customer.customer_id) }}">{{ customer.customer_id }}</a></td>
+			<td><a href="{{ url_for('.show_customer', id=customer.customer_id) }}">{{ customer.first_name }}</a></td>
+			<td><a href="{{ url_for('.show_customer', id=customer.customer_id) }}">{{ customer.last_name }}</a></td>
+			<td><a href="{{ url_for('.show_customer', id=customer.customer_id) }}">{{ customer.middle_name }}</a></td>
 		</tr>
 	{% endfor %}
 	</tbody>

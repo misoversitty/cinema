@@ -6,7 +6,7 @@
 
 {% block header %}
 <h1>Films</h1>
-<h2><a href="/films/add_new">Add new film</a></h2>
+<h2><a href="{{ url_for('.add_film') }}">Add new film</a></h2>
 {% endblock %}
 
 {% block content %}
@@ -20,8 +20,8 @@
 	<tbody>
 	{% for film in films %}
 		<tr>
-			<td><a href="/films/{{ film.film_id }}">{{ film.film_id }}</a></td>
-            <td><a href="/films/{{ film.film_id }}">{{ film.name }}</a></td>
+			<td><a href="{{ url_for('.show_film', id=film.film_id) }}">{{ film.film_id }}</a></td>
+            <td><a href="{{ url_for('.show_film', id=film.film_id) }}">{{ film.name }}</a></td>
 		</tr>
 	{% endfor %}
 	</tbody>

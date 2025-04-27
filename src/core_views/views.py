@@ -6,6 +6,8 @@ from flask import url_for
 
 from flask import Blueprint
 
+from core.urls import make_url
+
 sub_app = Blueprint("core_views", __name__,
                     static_folder="static",
                     static_url_path="/core_views/static",
@@ -17,13 +19,15 @@ def index():
 
 @sub_app.route("/customers")
 def show_customers():
-    customers = requests.get("http://localhost:8000/api/customers").json()
+    url = make_url("/api/customers")
+    customers = requests.get(url).json()
     return render_template("customers.html", customers=customers)
 
 @sub_app.route("/customers/<int:id>", methods=["POST", "GET"])
 def show_customer(id):
+    url = make_url(f"/api/customers{id}")
     if request.method == "GET":
-        customer = requests.get(f"http://localhost:8000/api/customers/{id}").json()
+        customer = requests.get(url).json()
         return render_template("customer.html", customer=customer)
     elif request.method == "POST":
         last_name = request.form.get("last_name")
@@ -32,11 +36,12 @@ def show_customer(id):
         data = {"last_name": last_name,
                 "first_name": first_name,
                 "middle_name": middle_name}
-        res = requests.post(f"http://localhost:8000/api/customers/{id}", json=data)
+        res = requests.post(url, json=data)
         return "", 201
 
 @sub_app.route("/customers/add_new", methods=["POST", "GET"])
 def add_customer():
+    url = make_url("/api/customers")
     if request.method == "POST":
         last_name = request.form.get("last_name")
         first_name = request.form.get("first_name")
@@ -44,7 +49,7 @@ def add_customer():
         data = {"last_name": last_name,
                 "first_name": first_name,
                 "middle_name": middle_name}
-        res = requests.post(f"http://localhost:8000/api/customers", json=data)
+        res = requests.post(url, json=data)
         if res.status_code == 201:
             return redirect(url_for("customer_created"))
     return render_template("customer.html", customer=None)
@@ -55,13 +60,15 @@ def customer_created():
 
 @sub_app.route("/orders")
 def show_orders():
-    orders = requests.get("http://localhost:8000/api/orders").json()
+    url = make_url("/api/orders")
+    orders = requests.get(url).json()
     return render_template("orders.html", orders=orders)
 
 @sub_app.route("/orders/<int:id>")
 def show_order(id):
+    url = make_url(f"/api/orders/{id}")
     if request.method == "GET":
-        order = requests.get(f"http://localhost:8000/api/orders/{id}").json()
+        order = requests.get(url).json()
         return render_template("order.html", order=order)
     elif request.method == "POST":
         pass
@@ -74,36 +81,41 @@ def add_order():
 
 @sub_app.route("/filmsessions")
 def show_filmsessions():
-    sessions = requests.get("http://localhost:8000/api/filmsessions").json()
+    url = make_url("/api/filmsessions")
+    sessions = requests.get(url).json()
     return render_template("filmsessions.html", sessions=sessions)
 
 @sub_app.route("/filmsessions/<int:id>")
 def show_filmsession(id):
+    url = make_url(f"/api/filmsessions/{id}")
     if request.method == "GET":
-        session = requests.get(f"http://localhost:8000/api/filmsessions/{id}").json()
+        session = requests.get(url).json()
         return render_template("filmsession.html", session=session)
     elif request.method == "POST":
         pass
 
 @sub_app.route("/films")
 def show_films():
-    films = requests.get("http://localhost:8000/api/films").json()
+    url = make_url("/api/films")
+    films = requests.get(url).json()
     return render_template("films.html", films=films)
 
 @sub_app.route("/films/<int:id>")
 def show_film(id):
+    url = make_url(f"/api/films/{id}")
     if request.method == "GET":
-        film = requests.get(f"http://localhost:8000/api/films/{id}").json()
+        film = requests.get(url).json()
         return render_template("film.html", film=film)
     elif request.method == "POST":
         pass
 
 @sub_app.route("/films/add_new", methods=["POST", "GET"])
 def add_film():
+    url = make_url("/api/films")
     if request.method == "POST":
         name = request.form.get("name")
         data = {"name": name}
-        res = requests.post(f"http://localhost:8000/api/films", json=data)
+        res = requests.post(url, json=data)
         if res.status_code == 201:
             return redirect(url_for("film_created"))
     return render_template("film.html", film=None)

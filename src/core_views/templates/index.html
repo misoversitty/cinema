@@ -9,9 +9,9 @@
 {% endblock %}
 
 {% block content %}
-<h2><a href="/customers">Customers</a></h2>
-<h2><a href="/orders">Orders</a></h2>
-<h2><a href="/filmsessions">Sessions</a></h2>
-<h2><a href="/films">Films</a></h2>
+<h2><a href="{{ url_for('.show_customers') }}">Customers</a></h2>
+<h2><a href="{{ url_for('.show_orders') }}">Orders</a></h2>
+<h2><a href="{{ url_for('.show_filmsessions') }}">Sessions</a></h2>
+<h2><a href="{{ url_for('.show_films') }}">Films</a></h2>
 {% endblock %}
 </h1>
