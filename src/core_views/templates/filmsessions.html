@@ -20,9 +20,9 @@
 	<tbody>
 	{% for session in sessions %}
 		<tr>
-			<td><a href="/filmsessions/{{ session.session_id }}">{{ session.session_id }}</a></td>
-			<td><a href="/filmsessions/{{ session.session_id }}">{{ session.film.name }}</a></td>
-			<td><a href="/filmsessions/{{ session.session_id }}">{{ session.date }}</a></td>
+			<td><a href="{{ url_for('.show_filmsession', id=session.session_id) }}">{{ session.session_id }}</a></td>
+			<td><a href="{{ url_for('.show_filmsession', id=session.session_id) }}">{{ session.film.name }}</a></td>
+			<td><a href="{{ url_for('.show_filmsession', id=session.session_id) }}">{{ session.date }}</a></td>
 		</tr>
 	{% endfor %}
 	</tbody>
