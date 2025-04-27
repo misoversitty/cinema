@@ -6,7 +6,10 @@ from flask import url_for
 
 from flask import Blueprint
 
-sub_app = Blueprint("core_views", __name__, template_folder="./templates")
+sub_app = Blueprint("core_views", __name__,
+                    static_folder="static",
+                    static_url_path="/core_views/static",
+                    template_folder="./templates")
 
 @sub_app.route("/")
 def index():
