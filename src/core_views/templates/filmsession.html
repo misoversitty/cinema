@@ -9,20 +9,10 @@
 {% endblock %}
 
 {% block content %}
-<table id="sessionN{{ session.session_id }}">
-	<thead>
-		<tr>
-			<th>No</th>
-			<th>name</th>
-			<th>datetime</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>{{ session.session_id }}</td>
-			<td>{{ session.film.name }}</td>
-			<td>{{ session.date }}</td>
-		</tr>
-	</tbody>
-</table>
+<form action="" method="POST">
+	<input type="text" id="id" name="session_id" value="{{ session.session_id }}">
+	<input type="text" id="name" name="name" value="{{ session.film.name }}">
+	<input type="datetime-local" id="date" name="date" value="{{ session.date }}">
+	<input type="submit" value="Submit">
+</form>
 {% endblock %}
