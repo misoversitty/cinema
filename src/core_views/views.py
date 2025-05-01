@@ -94,6 +94,13 @@ def show_filmsession(id):
     elif request.method == "POST":
         pass
 
+@sub_app.route("/filmsessions/add_new", methods=["POST", "GET"])
+def add_filmsession():
+    url = make_url(f"/api/filmsessions")
+    if request.method == "POST":
+        return redirect(url_for("filmsession_created"))
+    return render_template("filmsession.html", customer=None)
+
 @sub_app.route("/films")
 def show_films():
     url = make_url("/api/films")
