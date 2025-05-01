@@ -1,8 +1,11 @@
+[project.urls]
+Repository = "https://github.com/misoversitty/cinema.git"
+
 [tool.poetry]
 name = "cinema"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Ilya Smirennikov <smirennikov.i.v@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
