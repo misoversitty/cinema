@@ -1,0 +1,18 @@
+[Main]
+Host = 0.0.0.0
+Port = 8000
+Mode=Database.Development
+
+[Paths]
+ROOT_PATH = /home/misoversit/PycharmProjects/cinema
+SOURCES_PATH = ${ROOT_PATH}/src
+SPECIFICATION_PATH = ${SOURCES_PATH}/core
+SECRETS_PATH = ${ROOT_PATH}
+
+[Database.Production]
+
+[Database.Development]
+engine=development_engine.py
+
+[Database.Test]
+engine=test_engine.py
