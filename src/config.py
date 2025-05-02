@@ -1,22 +1,28 @@
 from pathlib import Path
-import yaml
-from sqlalchemy import create_engine
+
+from configparser import ConfigParser
+from configparser import ExtendedInterpolation
+
+conf = ConfigParser(interpolation=ExtendedInterpolation())
+config_path = Path(__file__).parent.parent.resolve()
+conf.read([config_path / "config", config_path / "secrets"])
 
 
-ROOT_PATH = Path(__file__).parent.parent.resolve()
-SOURCES_PATH = ROOT_PATH / "src"
-SPECIFICATION_PATH = SOURCES_PATH / "core"
-SECRETS_PATH = ROOT_PATH
+ROOT_PATH = Path(conf["Paths"]["ROOT_PATH"])
+SOURCES_PATH = Path(conf["Paths"]["SOURCES_PATH"])
+SPECIFICATION_PATH = Path(conf["Paths"]["SPECIFICATION_PATH"])
+SECRETS_PATH = Path(conf["Paths"]["SECRETS_PATH"])
 
+secrets_section = conf["secrets"]
+__db_schema = secrets_section["DB_SCHEMA"]
+__db_name = secrets_section["DB_NAME"]
+__db_username = secrets_section["DB_USERNAME"]
+__db_password = secrets_section["DB_PASSWORD"]
+__db_uri = secrets_section["DB_URI"]
 
-with open(SECRETS_PATH / "secrets", 'r') as file_buffer:
-    s = yaml.load(file_buffer, Loader=yaml.Loader)
-    __db_schema = s.get("DB_SCHEMA")
-    __db_name = s.get("DB_NAME")
-    __db_username = s.get("DB_USERNAME")
-    __db_password = s.get("DB_PASSWORD")
-    __db_uri = s.get("DB_URI")
-
-engine = create_engine(f"postgresql+psycopg2://{__db_username}:{__db_password}@{__db_uri}/{__db_name}",
-                       connect_args={'options': '-csearch_path={}'.format(__db_schema)},
-                       client_encoding='utf8')
+if conf["Main"]["Mode"] == "Database.Development":
+    from development_engine import engine_factory
+    engine = engine_factory(__db_schema, __db_name, __db_username, __db_password, __db_uri)
+elif conf["Main"]["Mode"] == "Database.Test":
+    from test_engine import engine_factory
+    engine = engine_factory()
