@@ -7,6 +7,9 @@ conf = ConfigParser(interpolation=ExtendedInterpolation())
 config_path = Path(__file__).parent.parent.resolve()
 conf.read([config_path / "config", config_path / "secrets"])
 
+host_address = conf["Main"]["host"]
+host_port = int(conf["Main"]["port"])
+
 
 ROOT_PATH = Path(conf["Paths"]["ROOT_PATH"])
 SOURCES_PATH = Path(conf["Paths"]["SOURCES_PATH"])
