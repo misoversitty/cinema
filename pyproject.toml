@@ -5,7 +5,7 @@ Repository = "https://github.com/misoversitty/cinema.git"
 name = "cinema"
 version = "0.1.0"
 description = ""
-authors = ["Ilya Smirennikov <smirennikov.i.v@mail.ru>"]
+authors = ["Ilya Smirennikov <smirennikov.i@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
